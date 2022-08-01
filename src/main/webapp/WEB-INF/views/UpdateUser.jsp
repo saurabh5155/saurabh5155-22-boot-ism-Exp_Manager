@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Signup
+	Update Users
 
-	<f:form action="users" method="post" modelAttribute="userBean">
+	<f:form action="updateUser" method="post" modelAttribute="userBean">
+		<f:hidden path="userId"/>
 		FisrtName: <f:input path="firstName" />
 		<f:errors path="firstName"></f:errors>
 		<br>
@@ -37,15 +39,5 @@
 		<br>
 		<input type="submit" value="SUBMIT" />
 	</f:form>
-	<%-- <form action="users" method="post">
-		FirstName:<input type="text" name="firstName"> <br>
-		<br> LastName:<input type="text" name="lastName"><br>
-		<br> Gender:::<br>
-		<br> Male: <input name="gender" type="radio" value="male"><br>
-		<br> Female: <input name="gender" type="radio" value="female"><br>
-		<br> Email:<input type="text" name="email"><br>
-		<br> Password:<input type="text" name="password"><br>
-		<br> <input type="submit" value="SUBMIT">
-	</form> --%>
 </body>
 </html>

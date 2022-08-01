@@ -16,7 +16,7 @@
 			<td>Email</td>
 			<td>Gender</td>
 			<td>UserType</td>
-			<td>Delete</td>
+			<td>Action</td>
 		</tr>
 		<c:forEach items="${listUsers }" var="l">
 			<tr>
@@ -25,7 +25,9 @@
 				<td>${l.email}</td>
 				<td>${l.gender}</td>
 				<td>${l.userType}</td>
-				<td> <a href="deleteusers/${l.userId}">delete</a> </td>
+				<td> <a href="deleteusers/${l.userId}">delete</a> 
+					<a href="getDataById?userId=${l.userId }">Update</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

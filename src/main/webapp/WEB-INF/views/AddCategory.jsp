@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	::::::Login::::::
-	<f:form action="login" method="post" modelAttribute="loginBean">
-		Email:<f:input path="email"/> <br><br>
-		Password<f:input path="password"/><br><br>
+	::::::Add Category::::::
+	<f:form action="addCategory" method="post" modelAttribute="categoryBean">
+		Email:<f:input path="categoryName"/> <br><br>
+		<f:errors path="categoryName"></f:errors>
 		<input type="submit" value="SUBMIT">
 	</f:form>
 	
