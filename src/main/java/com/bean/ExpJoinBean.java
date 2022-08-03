@@ -1,7 +1,5 @@
 package com.bean;
 
-import javax.validation.constraints.NotBlank;
-
 public class ExpJoinBean {
 	//Payment
 		private Integer paymentId;

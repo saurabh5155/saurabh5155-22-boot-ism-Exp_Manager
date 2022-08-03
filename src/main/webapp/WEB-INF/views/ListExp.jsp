@@ -18,6 +18,7 @@
 			<td>Category Name</td>
 			<td>Sub	Category Name</Name>
 			<td>Payment Mode</td>
+			<td>Action</td>
 		</tr>
 		<c:forEach items="${listExp }" var="l">
 			<tr>
@@ -28,7 +29,10 @@
 				<td>${l.categoryName}</td>
 				<td>${l.subcategory_name}</td>
 				<td>${l.paymentMode}</td>
-				
+				<td>
+					<a href="deleteExp?expId=${l.expId}">DeleteExp</a>||
+					<a href="listExpById?expId=${l.expId}">UpdateExp</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

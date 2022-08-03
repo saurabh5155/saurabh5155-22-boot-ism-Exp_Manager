@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,22 +19,42 @@ import com.dao.PaymentDao;
 
 @Controller
 public class PaymentController {
-	
+
 	@Autowired
 	PaymentDao paymentDao;
-	
+
 	@GetMapping("/addPayment")
-	public String payment(PaymentBean paymentBean,Model model) {
-		model.addAttribute("paymentBean",paymentBean);
+	public String payment(PaymentBean paymentBean, Model model) {
+		model.addAttribute("paymentBean", paymentBean);
 		return "AddPayment";
 	}
-	
+
 	@PostMapping("/addPayment")
-	public String addPayment(@ModelAttribute("paymentBean") @Valid	PaymentBean paymentBean,BindingResult result,HttpSession session) {
-		UserBean userBean =(UserBean) session.getAttribute("userBean");
+	public String addPayment(@ModelAttribute("paymentBean") @Valid PaymentBean paymentBean, BindingResult result,
+			HttpSession session) {
+		UserBean userBean = (UserBean) session.getAttribute("userBean");
 		int userId = userBean.getUserId();
 		paymentBean.setUserId(userId);
 		paymentDao.addPayment(paymentBean);
-		return "AdminDashbord";
+		return "AddPayment";
 	}
+
+	@GetMapping("/getByUserId")
+	public String getbyUserId(PaymentBean paymentBean, Model model,HttpSession session) {
+		UserBean userBean = (UserBean) session.getAttribute("userBean");
+		List<PaymentBean> listPayment =	paymentDao.listPayments(userBean.getUserId());
+		
+		model.addAttribute("userId",userBean.getUserId());
+		model.addAttribute("listPayment",listPayment);
+		model.addAttribute("paymentBean",paymentBean);
+		return "UpdateAmount";
+	}
+	
+	@PostMapping("/updateAmount")
+	public String updateAmount(@ModelAttribute("paymentBean") @Valid PaymentBean paymentBean, BindingResult result,
+			HttpSession session) {
+		
+		return "UpdateAmount";
+	}
+
 }

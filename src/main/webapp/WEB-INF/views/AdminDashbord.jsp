@@ -13,8 +13,9 @@ Admin Dashbord <br><br>
 <a href="listCategory">List Category</a><br><br>
 <a href="listSubAndCategory">listSubAndCategory</a><br><br>
 <a href="addPayment">addPayment</a><br><br>
-<a href="exp">AddExp</a>
-<a href="listExp">ListExp</a>
-<a href="logout">logout</a>
+<a href="exp">AddExp</a><br><br>
+<a href="listExp">ListExp</a><br><br>
+<a href="getByUserId">AddpaymentOnExsitingPayment</a><br><br>
+<a href="logout">logout</a><br><br>
 </body>
 </html>

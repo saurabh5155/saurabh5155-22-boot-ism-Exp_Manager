@@ -19,7 +19,7 @@ public class ExpBean {
 
 	private Integer expId;
 
-	public Integer expAmount;
+	private Integer expAmount;
 
 	public Integer getUserId() {
 		return userId;
