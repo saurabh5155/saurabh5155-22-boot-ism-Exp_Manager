@@ -13,6 +13,7 @@
 		<tr>
 			<td>Id</Name>
 			<td>Category Name</td>
+			<td>Sub Category Name</td>
 			<td>UserId</td>
 			<td>Action</td>
 		</tr>
@@ -20,8 +21,9 @@
 			<tr>
 				<td>${l.categoryId}</td>
 				<td>${l.categoryName}</td>
+				<td>${l.subcategory_name}</td>
 				<td>${l.userId}</td>
-				<td> <a href="deleteCategory?categoryId=${l.categoryId}">delete</a> 
+				<td> 
 					<%-- <a href="getDataByCatogeryId?categoryId=${l.categoryId}">Update</a> --%>
 					<a href="subCategory?categoryId=${l.categoryId}">Add Sub Category</a>
 				</td>

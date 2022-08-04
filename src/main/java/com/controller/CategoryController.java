@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.apache.tomcat.jni.Library;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,21 +43,22 @@ public class CategoryController {
 	}
 
 	@GetMapping("/listCategory")
-	public String listCageroy(Model model) {
-		List<CategoryBean> listCategory=categoryDao.listCategory();
+	public String listCageroy(Model model,HttpSession session) {
+		UserBean userBean = (UserBean) session.getAttribute("userBean");
+		List<CategoryBean> listCategory=categoryDao.listCategory(userBean.getUserId());
 		model.addAttribute("listCategory",listCategory);
 		return "ListCategory";
 	}
 	
 	@GetMapping("/listSubAndCategory")
-	public String listCageroy(Model model,HttpSession session) {
+	public String listCageroySubCat(Model model,HttpSession session) {
 		
 		UserBean userBean = (UserBean) session.getAttribute("userBean");
 		int userId = userBean.getUserId();
 		List<CSCategoryBean> listCategory = categoryDao.listCSCategory(userId);
 //		System.out.println(listCategory.get(0).getSubCategoryName());
 		model.addAttribute("listCategory",listCategory);
-		return "SubCategory";
+		return "ListSubCat";
 	}
 	
 	@GetMapping("/deleteCategory")

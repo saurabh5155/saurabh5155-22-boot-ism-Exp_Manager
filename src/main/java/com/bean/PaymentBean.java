@@ -13,7 +13,7 @@ public class PaymentBean {
 
 	private Integer userId;
 	
-	private Long cardNumber;
+	private String cardNumber;
 	
 	private String upiId;
 	
@@ -49,12 +49,11 @@ public class PaymentBean {
 		this.userId = userId;
 	}
 
-
-	public Long getCardNumber() {
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
-	public void setCardNumber(Long cardNumber) {
+	public void setCardNumber(String cardNumber) {
 		this.cardNumber = cardNumber;
 	}
 

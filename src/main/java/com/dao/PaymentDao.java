@@ -27,12 +27,26 @@ public class PaymentDao {
 				new BeanPropertyRowMapper<PaymentBean>(PaymentBean.class), userId);
 	}
 
+	public PaymentBean listPaymentById(int paymentId) {
+		return stmt.queryForObject("select * from payments where paymentid=?",
+				new BeanPropertyRowMapper<PaymentBean>(PaymentBean.class), new Object[] { paymentId });
+	}
+	
+	public PaymentBean listPaymentById(String paymentMode) {
+		return stmt.queryForObject("select * from payments where payment_mode=?",
+				new BeanPropertyRowMapper<PaymentBean>(PaymentBean.class), new Object[] { paymentMode });
+	}
+
 	public void updatePaymentAmount(int paymentId, int amount) {
 		stmt.update("update payments set amount =? where paymentid =? ", amount, paymentId);
 	}
 
-	public List<PaymentBean> getPaymentByPaymentId(int paymentId, int userId) {
-		return stmt.query("select * from payments where userid =? and paymentid=?",
+	public void updatePaymentAmountByPaymentMode(String paymentMode, int amount) {
+		stmt.update("update payments set amount =? where payment_mode =? ", amount, paymentMode);
+	}
+	
+	public List<PaymentBean> getPaymentByPaymentId(String paymentId, int userId) {
+		return stmt.query("select * from payments where userid =? and payment_mode=?",
 				new BeanPropertyRowMapper<PaymentBean>(PaymentBean.class), userId, paymentId);
 	}
 }

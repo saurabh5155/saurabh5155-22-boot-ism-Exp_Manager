@@ -19,14 +19,26 @@
 		
 		<input type="date" name="Date" ><br><br>
 		
-		Payment Mode:<f:select path="paymentId" >
-				<c:forEach items="${listPayments }" var="p">
-					<f:option value="${p.paymentId }">${p.paymentMode }/${p.amount }</f:option>
-				</c:forEach>
+		Payment Mode:<select id="paymentType">
+			<option value="">Select</option>
+			<option value="Cash">Cash</option>
+			<option value="Credit Card">Credit Card</option>
+			<option value="Debit Card">Debit Card</option>
+			<option value="UPI">UPI</option>
+				
+		</select>
+		
+		<br>
+		<br>
+		Number:<f:select path="paymentId" id="acNumber" >
+				
 		</f:select>
 		<br>
 		<br>${paymentBig }
 		<f:errors path="paymentId"></f:errors>
+		
+	
+		
 		
 		Exp	Amount: <f:input path="expAmount"/> <br><br>
 		
@@ -76,6 +88,47 @@
 							console.log("something went wrong"); 
 						});
 			})	
+			
+			
+			$("#paymentType").click(function(){
+				
+				
+				var paymentType = document.getElementById("paymentType").value;
+					if(paymentType=="Cash"){
+						document.getElementById("accNumber").setAttribute("style","display:none");
+					}
+					
+					else	if(paymentType=="Credit Card"){
+						document.getElementById("accNumber").setAttribute("style","display:block");
+					}
+					
+					else if(paymentType=="Debit Card"){
+						document.getElementById("accNumber").setAttribute("style","display:block");
+					}
+					
+					else if(paymentType=="UPI"){
+						document.getElementById("accNumber").setAttribute("style","display:block");
+					} 
+					
+				
+					
+							let url = "http://localhost:9595/listpaymentByPaymentName?paymentName="+paymentType;	
+							 	 
+							$.get(url)
+							.done(function(data){
+								console.log("gj"+data);
+								let acNumber = $("#acNumber");
+								acNumber.empty();
+									for(let i=0;i<data.length;i++){ 
+									
+										acNumber.append(`<option value=`+data[i].paymentId+`>`+data[i].cardNumber+`</option>`);
+								}
+								
+							}).fail(function(){
+								console.log("something went wrong"); 
+							});
+				
+				})	
 		})
 		
 		

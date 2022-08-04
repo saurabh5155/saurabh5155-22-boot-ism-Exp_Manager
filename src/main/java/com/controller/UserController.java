@@ -71,21 +71,13 @@ public class UserController {
 			model.addAttribute("loginBean",loginBean);
 			return "Login";
 			
-		} else if (userBean.getUserType().equals("customer")) {
-			session.setAttribute("userBean", userBean);
-			
-			model.addAttribute("userBean",userBean);
-			return "Home";
-			
-		} else if (userBean.getUserType().equals("admin")) {
+		}else {
 			
 			session.setAttribute("userBean", userBean);
 			model.addAttribute("userBean",userBean);
 			return "AdminDashbord";
-			
-		} else {
-			return "Login";
 		}
+		
 	}
 
 	

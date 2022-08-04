@@ -52,9 +52,29 @@ public class PaymentController {
 	
 	@PostMapping("/updateAmount")
 	public String updateAmount(@ModelAttribute("paymentBean") @Valid PaymentBean paymentBean, BindingResult result,
-			HttpSession session) {
+			HttpSession session,Model model) {
 		
-		return "UpdateAmount";
+		if(paymentBean.getPaymentMode().equals("Cash")) {
+			PaymentBean payment =	paymentDao.listPaymentById(paymentBean.getPaymentMode());
+			int newAmount = payment.getAmount() + paymentBean.getAmount();
+			paymentDao.updatePaymentAmountByPaymentMode(paymentBean.getPaymentMode(), newAmount);
+		}else {
+			
+			PaymentBean payment =	paymentDao.listPaymentById(paymentBean.getPaymentId());
+			System.out.println(payment.getAmount());
+			System.out.println(paymentBean.getAmount());
+			System.out.println(paymentBean.getPaymentMode());
+			if(payment.getAmount() < paymentBean.getAmount()) {
+				model.addAttribute("msgPaymentBig","");
+			}else if (payment.getAmount() >= paymentBean.getAmount()) {
+				
+				int newAmount = payment.getAmount() + paymentBean.getAmount();
+				paymentDao.updatePaymentAmount(paymentBean.getPaymentId(),newAmount );
+			}
+		}
+		
+		return "redirect:/getByUserId";
 	}
+	
 
 }

@@ -21,13 +21,13 @@ public class CategoryDao {
 				categoryBean.getUserId());
 	}
 
-	public List<CategoryBean> listCategory() {
-		return stmt.query("select * from categories", new BeanPropertyRowMapper<CategoryBean>(CategoryBean.class));
+	public List<CategoryBean> listCategory(int userId) {
+		return stmt.query("select * from categories c join users u on c.userid = u.userid where c.userid = ? or u.usertype = 'admin'", new BeanPropertyRowMapper<CategoryBean>(CategoryBean.class),userId);
 	}
 
 	public List<CSCategoryBean> listCSCategory(int userId) {
 		return stmt.query(
-				"select x.category_name,y.subcategory_name,x.categoryid,x.userid,y.subcategoryid from categories x inner join sub_categories y on x.categoryid = y.categoryid where userid =?",
+				"select * from categories c join users u on c.userid = u.userid join sub_categories s ON c.categoryid = s.categoryid  where c.userid = ? or u.usertype = 'admin'",
 				new BeanPropertyRowMapper<CSCategoryBean>(CSCategoryBean.class), new Object[] { userId });
 
 	}
