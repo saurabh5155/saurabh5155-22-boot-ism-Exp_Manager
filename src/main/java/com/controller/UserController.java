@@ -33,6 +33,7 @@ public class UserController {
 
 	@PostMapping("/users")
 	public String addSignupUser(@ModelAttribute("userBean") @Valid UserBean userBean,BindingResult result,Model model) {
+		
 		if(result.hasErrors()) {
 			model.addAttribute("userBean",userBean);
 			return "Signup";
@@ -71,11 +72,17 @@ public class UserController {
 			model.addAttribute("loginBean",loginBean);
 			return "Login";
 			
-		}else {
+		}else if(userBean.getUserType().equals("admin")){
 			
 			session.setAttribute("userBean", userBean);
 			model.addAttribute("userBean",userBean);
 			return "AdminDashbord";
+		}else if (userBean.getUserType().equals("customer")) {
+			session.setAttribute("userBean", userBean);
+			model.addAttribute("userBean",userBean);
+			return "Home";
+		}else {
+			return "Login";			
 		}
 		
 	}
