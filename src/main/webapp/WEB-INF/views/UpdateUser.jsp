@@ -30,7 +30,7 @@
 		<br>
 		<f:errors path="gender"></f:errors>
 		email: <f:input path="email" />
-		<s:errors path="email"></s:errors>
+		<f:errors path="email"></f:errors>
 		<br>
 		<br>
 		password: <f:input path="password" />

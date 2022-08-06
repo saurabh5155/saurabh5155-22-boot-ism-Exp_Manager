@@ -23,6 +23,11 @@
 <div class="dlabnav">
 	<div class="dlabnav-scroll mm-active ps ps--active-y">
 		<ul class="metismenu mm-show" id="menu">
+		
+			<li><a href="users" class="" aria-expanded="false">
+					<i class="fas fa-clone"></i> <span class="nav-text">List Users</span>
+			</a></li>
+			
 			<li><a href="category" class="" aria-expanded="false">
 					<i class="fas fa-user-check"></i> <span class="nav-text">Add Category</span>
 			</a></li>
